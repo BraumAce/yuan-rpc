@@ -13,7 +13,7 @@ public interface Serializer {
      * @param <T>
      * @throws IOException
      */
-    <T> byte[] serializer(T object) throws IOException;
+    <T> byte[] serialize(T object) throws IOException;
 
     /**
      * 反序列化
@@ -23,5 +23,5 @@ public interface Serializer {
      * @param <T>
      * @throws IOException
      */
-    <T> T deserializer(byte[] bytes, Class<T> type) throws IOException;
+    <T> T deserialize(byte[] bytes, Class<T> type) throws IOException;
 }
