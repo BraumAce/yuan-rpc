@@ -12,16 +12,23 @@ import io.vertx.core.http.HttpServerResponse;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ServiceLoader;
 
 /**
  * HTTP 请求处理
  */
 public class HttpServerHandler implements Handler<HttpServerRequest> {
 
+    Serializer serializer = null;
     @Override
     public void handle(HttpServerRequest request){
         // 指定序列化器
-        final Serializer serializer = new JdkSerializer();
+        //final Serializer serializer = new JdkSerializer();
+        // 通过系统实现 配置在 resources 资源目录下
+        ServiceLoader<Serializer> serviceLoader = ServiceLoader.load(Serializer.class);
+        for (Serializer service : serviceLoader){
+            serializer = service;
+        }
 
         // 记录日志
         System.out.println("Received request: " + request.method() + " " + request.uri());
