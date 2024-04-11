@@ -1,10 +1,12 @@
 package com.yuan.yuanrpc.server;
 
+import com.yuan.yuanrpc.RpcApplication;
 import com.yuan.yuanrpc.model.RpcRequest;
 import com.yuan.yuanrpc.model.RpcResponse;
 import com.yuan.yuanrpc.registry.LocalRegistry;
 import com.yuan.yuanrpc.serializer.JdkSerializer;
 import com.yuan.yuanrpc.serializer.Serializer;
+import com.yuan.yuanrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -18,17 +20,20 @@ import java.util.ServiceLoader;
  * HTTP 请求处理
  */
 public class HttpServerHandler implements Handler<HttpServerRequest> {
+    // 指定序列化器
+    //Serializer serializer = null;
+    //final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
-    Serializer serializer = null;
     @Override
     public void handle(HttpServerRequest request){
         // 指定序列化器
         //final Serializer serializer = new JdkSerializer();
         // 通过系统实现 配置在 resources 资源目录下
-        ServiceLoader<Serializer> serviceLoader = ServiceLoader.load(Serializer.class);
-        for (Serializer service : serviceLoader){
-            serializer = service;
-        }
+//        ServiceLoader<Serializer> serviceLoader = ServiceLoader.load(Serializer.class);
+//        for (Serializer service : serviceLoader){
+//            serializer = service;
+//        }
+        final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // 记录日志
         System.out.println("Received request: " + request.method() + " " + request.uri());
