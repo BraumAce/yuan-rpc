@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.proxy;
+package com.yuan.yuanrpc.utils.proxy;
 
 import lombok.extern.slf4j.Slf4j;
 
