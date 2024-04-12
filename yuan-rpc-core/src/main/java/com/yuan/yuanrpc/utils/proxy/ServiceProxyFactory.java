@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.proxy;
+package com.yuan.yuanrpc.utils.proxy;
 
 import java.lang.reflect.Proxy;
 
