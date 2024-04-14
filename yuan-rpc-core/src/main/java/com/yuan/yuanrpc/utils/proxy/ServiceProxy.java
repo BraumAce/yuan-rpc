@@ -26,6 +26,7 @@ public class ServiceProxy implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable{
         // 指定序列化器
         //Serializer serializer = new JdkSerializer();
+        // 动态获取序列化器, 使用工厂 + 读取配置
         final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
         // 构造请求
