@@ -1,4 +1,4 @@
-# yuan-rpc - 基于 Vert.x 的高性能 RPC 框架
+# Yuan-RPC - 基于 Vert.x 的高性能 RPC 框架
 
 ## 项目介绍
 
