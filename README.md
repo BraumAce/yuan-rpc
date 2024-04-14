@@ -1,7 +1,5 @@
 # yuan-rpc - 基于 Vert.x 的高性能 RPC 框架
 
----
-
 ## 项目介绍
 
 参考 Dubbo 开源项目自主设计，基于 Java + Etcd + vert.x + 自定义协议实现的高性能 RPC 框架。开发者只需引入 Spring Boot Starter，通过注解和配置文件即可快速使用框架，可以像调用本地方法一样轻松调用远程服务；
