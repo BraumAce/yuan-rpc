@@ -65,7 +65,6 @@
             <artifactId>hessian</artifactId>
             <version>4.0.66</version>
         </dependency>
-
     </dependencies>
 
 
