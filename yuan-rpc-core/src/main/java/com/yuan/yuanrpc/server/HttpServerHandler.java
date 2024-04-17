@@ -4,7 +4,6 @@ import com.yuan.yuanrpc.RpcApplication;
 import com.yuan.yuanrpc.model.RpcRequest;
 import com.yuan.yuanrpc.model.RpcResponse;
 import com.yuan.yuanrpc.registry.LocalRegistry;
-import com.yuan.yuanrpc.serializer.JdkSerializer;
 import com.yuan.yuanrpc.serializer.Serializer;
 import com.yuan.yuanrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
@@ -14,7 +13,6 @@ import io.vertx.core.http.HttpServerResponse;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ServiceLoader;
 
 /**
  * HTTP 请求处理
