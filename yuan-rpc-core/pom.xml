@@ -65,6 +65,12 @@
             <artifactId>hessian</artifactId>
             <version>4.0.66</version>
         </dependency>
+        <!-- 操作Etcd的工具:jetcd https://github.com/etcd-io/jetcd -->
+        <dependency>
+            <groupId>io.etcd</groupId>
+            <artifactId>jetcd-core</artifactId>
+            <version>0.7.7</version>
+        </dependency>
 
     </dependencies>
 
