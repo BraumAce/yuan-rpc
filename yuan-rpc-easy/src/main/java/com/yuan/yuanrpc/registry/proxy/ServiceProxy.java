@@ -1,11 +1,11 @@
-package com.yuan.yuanrpc.proxy;
+package com.yuan.yuanrpc.registry.proxy;
 
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
-import com.yuan.yuanrpc.model.RpcRequest;
-import com.yuan.yuanrpc.model.RpcResponse;
-import com.yuan.yuanrpc.serializer.JdkSerializer;
-import com.yuan.yuanrpc.serializer.Serializer;
+import com.yuan.yuanrpc.registry.model.RpcRequest;
+import com.yuan.yuanrpc.registry.model.RpcResponse;
+import com.yuan.yuanrpc.registry.serializer.JdkSerializer;
+import com.yuan.yuanrpc.registry.serializer.Serializer;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
