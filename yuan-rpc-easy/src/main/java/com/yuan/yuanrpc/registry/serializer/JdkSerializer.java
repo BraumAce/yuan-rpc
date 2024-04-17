@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.serializer;
+package com.yuan.yuanrpc.registry.serializer;
 
 import java.io.*;
 
