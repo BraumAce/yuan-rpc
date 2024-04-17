@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.model;
+package com.yuan.yuanrpc.registry.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
