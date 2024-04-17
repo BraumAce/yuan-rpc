@@ -1,7 +1,10 @@
 package com.yuan.yuanrpc;
 
+import com.yuan.yuanrpc.config.RegistryConfig;
 import com.yuan.yuanrpc.config.RpcConfig;
 import com.yuan.yuanrpc.constant.RpcConstant;
+import com.yuan.yuanrpc.registry.Registry;
+import com.yuan.yuanrpc.registry.RegistryFactory;
 import com.yuan.yuanrpc.utils.ConfigUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +22,12 @@ public class RpcApplication {
     public static void init(RpcConfig newRpcConfig){
         rpcConfig = newRpcConfig;
         log.info("rpc 初始化, 配置 = {}", newRpcConfig.toString());
+
+        // 注册中心初始化
+        RegistryConfig registryConfig = rpcConfig.getRegistryConfig();
+        Registry registry = RegistryFactory.getInstance(registryConfig.getRegistry());
+        registry.init(registryConfig);
+        log.info("registry init, config = {}", registryConfig);
     }
 
     /**
