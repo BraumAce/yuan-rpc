@@ -1,6 +1,5 @@
 package com.yuan.yuanrpc.config;
 
-import com.yuan.yuanrpc.serializer.Serializer;
 import com.yuan.yuanrpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -16,7 +15,7 @@ public class RpcConfig {
     private String version = "1.0";
 
     // 服务器主机名
-    private String serverhost = "localhost";
+    private String serverHost = "localhost";
 
     // 服务器端口号
     private Integer serverPort = 8080;
@@ -26,4 +25,7 @@ public class RpcConfig {
 
     // 序列化器
     private String serializer = SerializerKeys.JDK;
+
+    // 注册中心配置
+    public RegistryConfig RegistryConfig = new RegistryConfig();
 }
