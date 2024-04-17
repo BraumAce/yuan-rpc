@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.server;
+package com.yuan.yuanrpc.registry.server;
 
 import io.vertx.core.Vertx;
 
