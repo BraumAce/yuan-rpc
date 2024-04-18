@@ -5,6 +5,7 @@ import com.yuan.yuanrpc.serializer.Serializer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
@@ -106,5 +107,12 @@ public class SpiLoader {
         }
         loaderMap.put(loadClass.getName(), keyClassMap);
         return keyClassMap;
+    }
+
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        loadAll();
+        System.out.println(loaderMap);
+        Serializer serializer = getInstance(Serializer.class, "e");
+        System.out.println(serializer);
     }
 }

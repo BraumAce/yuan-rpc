@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.registry.server;
+package com.yuan.yuanrpc.server;
 
 /**
  * HTTP 服务器接口

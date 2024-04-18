@@ -1,4 +1,4 @@
-package com.yuan.yuanrpc.registry.serializer;
+package com.yuan.yuanrpc.serializer;
 
 import java.io.IOException;
 
