@@ -16,6 +16,9 @@ public class ServiceMetaInfo {
     // 服务版本号
     private String serviceVersion = RpcConstant.DEFAULT_SERVICE_VERSION;
 
+    // 服务地址
+    private String serviceAddress;
+
     // 服务域名
     private String serviceHost;
 
@@ -40,7 +43,8 @@ public class ServiceMetaInfo {
      * @return
      */
     public String getServiceNodeKey(){
-        return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePort);
+        return String.format("%s/%s", getServiceKey(), serviceAddress);
+        //return String.format("%s/%s:%s", getServiceKey(), serviceHost, servicePort);
     }
 
     /**
