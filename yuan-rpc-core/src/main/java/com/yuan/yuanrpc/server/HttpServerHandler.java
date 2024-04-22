@@ -18,9 +18,6 @@ import java.lang.reflect.Method;
  * HTTP 请求处理
  */
 public class HttpServerHandler implements Handler<HttpServerRequest> {
-    // 指定序列化器
-    //Serializer serializer = null;
-    //final Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
 
     @Override
     public void handle(HttpServerRequest request){
@@ -83,7 +80,8 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
      * @param serializer
      */
     void doResponse(HttpServerRequest request, RpcResponse rpcResponse, Serializer serializer){
-        HttpServerResponse httpServerResponse = request.response().putHeader("content-type", "application/json");
+        HttpServerResponse httpServerResponse = request.response()
+                .putHeader("content-type", "application/json");
         try {
             // 序列化
             byte[] serialized = serializer.serialize(rpcResponse);

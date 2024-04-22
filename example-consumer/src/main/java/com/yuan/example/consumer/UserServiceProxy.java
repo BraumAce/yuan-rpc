@@ -7,6 +7,7 @@ import com.yuan.example.common.service.UserService;
 import com.yuan.yuanrpc.model.RpcRequest;
 import com.yuan.yuanrpc.model.RpcResponse;
 import com.yuan.yuanrpc.serializer.JdkSerializer;
+import com.yuan.yuanrpc.serializer.Serializer;
 
 import java.io.IOException;
 
@@ -14,30 +15,33 @@ import java.io.IOException;
  * 静态代理
  */
 public class UserServiceProxy implements UserService {
-    public User getUser(User user){
-        // 指定序列化器
-        JdkSerializer serializer = new JdkSerializer();
 
-        // 发请求
+    public User getUser(User user) {
+        // 指定序列化器
+        final Serializer serializer = new JdkSerializer();
+
+        // 构造请求
         RpcRequest rpcRequest = RpcRequest.builder()
                 .serviceName(UserService.class.getName())
                 .methodName("getUser")
                 .parameterTypes(new Class[]{User.class})
                 .args(new Object[]{user})
                 .build();
-
-        // 构造 HTTP 请求调用服务提供者
         try {
+            // 序列化（Java 对象 => 字节数组）
             byte[] bodyBytes = serializer.serialize(rpcRequest);
-            byte[] result;
+
+            // 发送请求
             try (HttpResponse httpResponse = HttpRequest.post("http://localhost:8080")
-                        .body(bodyBytes)
-                        .execute()){
-                result = httpResponse.bodyBytes();
+                    .body(bodyBytes)
+                    .execute()) {
+                byte[] result = httpResponse.bodyBytes();
+
+                // 反序列化（字节数组 => Java 对象）
+                RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
+                return (User) rpcResponse.getData();
             }
-            RpcResponse rpcResponse = serializer.deserialize(result, RpcResponse.class);
-            return (User) rpcResponse.getData();
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

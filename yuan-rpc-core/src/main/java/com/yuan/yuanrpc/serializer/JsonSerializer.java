@@ -20,12 +20,12 @@ public class JsonSerializer implements Serializer{
 
     // 反序列化
     @Override
-    public <T> T deserialize(byte[] bytes, Class<T> classType) throws IOException{
+    public <T> T deserialize(byte[] bytes, Class<T> classType) throws IOException {
         T obj = OBJECT_MAPPER.readValue(bytes, classType);
-        if (obj instanceof RpcRequest){
+        if (obj instanceof RpcRequest) {
             return handleRequest((RpcRequest) obj, classType);
         }
-        if (obj instanceof RpcResponse){
+        if (obj instanceof RpcResponse) {
             return handleResponse((RpcResponse) obj, classType);
         }
         return obj;
@@ -44,10 +44,10 @@ public class JsonSerializer implements Serializer{
         Object[] args = rpcRequest.getArgs();
 
         // 循环处理每个参数的类型
-        for (int i = 0; i < parameterTypes.length; i++){
+        for (int i = 0; i < parameterTypes.length; i++) {
             Class<?> clazz = parameterTypes[i];
             // 如果类型不同，则重新处理一下类型
-            if (!clazz.isAssignableFrom(args[i].getClass())){
+            if (!clazz.isAssignableFrom(args[i].getClass())) {
                 byte[] argBytes = OBJECT_MAPPER.writeValueAsBytes(args[i]);
                 args[i] = OBJECT_MAPPER.readValue(argBytes, clazz);
             }

@@ -15,10 +15,11 @@ public class ConsumerExample {
 
     // 调用公共类测试 Mock 模拟服务代理
     public static void main(String[] args) {
+
         // 获取代理
         UserService userService = ServiceProxyFactory.getProxy(UserService.class);
         User user = new User();
-        user.setName("yuan");
+        user.setName("xiaoyuan");
         // 调用
         User newUser = userService.getUser(user);
         if (newUser != null){

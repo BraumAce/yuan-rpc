@@ -1,5 +1,6 @@
 package com.yuan.yuanrpc.config;
 
+import com.yuan.yuanrpc.registry.RegistryKeys;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
 @Data
 public class RegistryConfig {
     // 注册中心类别
-    private String registry = "etcd";
+    private String registry = RegistryKeys.ZOOKEEPER;
     // 注册中心地址
     private String address = "http://localhost:2380";
 
