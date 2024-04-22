@@ -1,4 +1,0 @@
-jdk = JdkSerializer
-hessian = HessianSerializer
-json = JsonSerializer
-kryo = KryoSerializer

@@ -1,1 +1,2 @@
-etcd = EtcdRegistry
+etcd = com.yuan.yuanrpc.registry.EtcdRegistry
+zookeeper = com.yuan.yuanrpc.registry.ZooKeeperRegistry

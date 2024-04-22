@@ -1,4 +1,1 @@
-jdk = JdkSerializer
-hessian = com.yuan.yuanrpc.serializer.HessianSerializer
-json = com.yuan.yuanrpc.serializer.JsonSerializer
-kryo = com.yuan.yuanrpc.serializer.KryoSerializer
+com.yuan.yuanrpc.serializer.JdkSerializer
