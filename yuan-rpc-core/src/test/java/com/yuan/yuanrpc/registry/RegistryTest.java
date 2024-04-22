@@ -14,6 +14,9 @@ import java.util.List;
 public class RegistryTest {
     final Registry registry = new EtcdRegistry();
 
+    /**
+     * 初始化
+     */
     @Before
     public void init(){
         RegistryConfig registryConfig = new RegistryConfig();
@@ -21,6 +24,10 @@ public class RegistryTest {
         registry.init(registryConfig);
     }
 
+    /**
+     * 注册测试
+     * @throws Exception
+     */
     @Test
     public void registry() throws Exception{
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
@@ -45,6 +52,10 @@ public class RegistryTest {
         registry.register(serviceMetaInfo);
     }
 
+    /**
+     * 注销服务测试
+     * @throws Exception
+     */
     @Test
     public void unRegister() throws Exception {
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
@@ -55,6 +66,9 @@ public class RegistryTest {
         registry.register(serviceMetaInfo);
     }
 
+    /**
+     * 服务发现测试
+     */
     @Test
     public void serviceDiscovery(){
         ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
@@ -65,6 +79,10 @@ public class RegistryTest {
         Assert.assertNotNull(serviceMetaInfoList);
     }
 
+    /**
+     * 心跳检测测试
+     * @throws Exception
+     */
     @Test
     public void heartBeat() throws Exception {
         // init 方法中已经执行心跳检测了
