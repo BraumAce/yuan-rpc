@@ -16,4 +16,5 @@ public class FailSafeTolerantStrategy implements TolerantStrategy {
         log.info("静默处理异常", e);
         return new RpcResponse();
     }
+
 }
