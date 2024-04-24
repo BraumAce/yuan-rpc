@@ -1,0 +1,4 @@
+failBack = com.yuan.yuanrpc.fault.tolerant.FailBackTolerantStrategy
+failFast = com.yuan.yuanrpc.fault.tolerant.FailFastTolerantStrategy
+failOver = com.yuan.yuanrpc.fault.tolerant.FailOverTolerantStrategy
+failSafe = com.yuan.yuanrpc.fault.tolerant.FailSafeTolerantStrategy
