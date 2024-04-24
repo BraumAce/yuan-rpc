@@ -1,0 +1,2 @@
+no = com.yuan.yuanrpc.fault.retry.NoRetryStrategy
+fixedInterval = com.yuan.yuanrpc.fault.retry.FixedIntervalRetryStrategy
