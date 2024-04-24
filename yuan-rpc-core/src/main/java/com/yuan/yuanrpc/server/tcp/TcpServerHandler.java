@@ -2,10 +2,7 @@ package com.yuan.yuanrpc.server.tcp;
 
 import com.yuan.yuanrpc.model.RpcRequest;
 import com.yuan.yuanrpc.model.RpcResponse;
-import com.yuan.yuanrpc.protocol.ProtocolMessage;
-import com.yuan.yuanrpc.protocol.ProtocolMessageDecoder;
-import com.yuan.yuanrpc.protocol.ProtocolMessageEncoder;
-import com.yuan.yuanrpc.protocol.ProtocolMessageTypeEnum;
+import com.yuan.yuanrpc.protocol.*;
 import com.yuan.yuanrpc.registry.LocalRegistry;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
@@ -15,14 +12,16 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 /**
- * 请求处理器
+ * TCP 请求处理器
  */
 public class TcpServerHandler implements Handler<NetSocket> {
-
+    /**
+     * 处理请求
+     * @param socket
+     */
     @Override
-    public void handle(NetSocket netSocket) {
-        // 处理连接
-        netSocket.handler(buffer -> {
+    public void handle(NetSocket socket) {
+        TcpBufferHandlerWrapper bufferHandlerWrapper = new TcpBufferHandlerWrapper(buffer -> {
             // 接受请求，解码
             ProtocolMessage<RpcRequest> protocolMessage;
             try {
@@ -31,6 +30,7 @@ public class TcpServerHandler implements Handler<NetSocket> {
                 throw new RuntimeException("协议消息解码错误");
             }
             RpcRequest rpcRequest = protocolMessage.getBody();
+            ProtocolMessage.Header header = protocolMessage.getHeader();
 
             // 处理请求
             // 构造响应结果对象
@@ -39,7 +39,7 @@ public class TcpServerHandler implements Handler<NetSocket> {
                 // 获取要调用的服务实现类，通过反射调用
                 Class<?> implClass = LocalRegistry.get(rpcRequest.getServiceName());
                 Method method = implClass.getMethod(rpcRequest.getMethodName(), rpcRequest.getParameterTypes());
-                Object result = method.invoke(implClass.newInstance(), rpcRequest.getParameterTypes());
+                Object result = method.invoke(implClass.newInstance(), rpcRequest.getArgs());
 
                 // 封装返回结果
                 rpcResponse.setData(result);
@@ -52,15 +52,17 @@ public class TcpServerHandler implements Handler<NetSocket> {
             }
 
             // 发送响应，编码
-            ProtocolMessage.Header header = protocolMessage.getHeader();
             header.setType((byte) ProtocolMessageTypeEnum.RESPONSE.getKey());
+            header.setStatus((byte) ProtocolMessageStatusEnum.OK.getValue());
             ProtocolMessage<RpcResponse> responseProtocolMessage = new ProtocolMessage<>(header, rpcResponse);
             try {
                 Buffer encode = ProtocolMessageEncoder.encode(responseProtocolMessage);
-                netSocket.write(encode);
+                socket.write(encode);
             } catch (IOException e) {
                 throw new RuntimeException("协议消息编码错误");
             }
         });
+
+        socket.handler(bufferHandlerWrapper);
     }
 }
