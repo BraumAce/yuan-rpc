@@ -15,4 +15,5 @@ public class FailBackTolerantStrategy implements TolerantStrategy {
 
         return null;
     }
+
 }
