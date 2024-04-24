@@ -1,5 +1,8 @@
 package com.yuan.yuanrpc.config;
 
+import com.yuan.yuanrpc.fault.retry.RetryStrategyKeys;
+import com.yuan.yuanrpc.fault.tolerant.TolerantStrategyKeys;
+import com.yuan.yuanrpc.loadbalancer.LoadBalancerKeys;
 import com.yuan.yuanrpc.serializer.SerializerKeys;
 import lombok.Data;
 
@@ -24,7 +27,16 @@ public class RpcConfig {
     private boolean mock = false;
 
     // 序列化器
-    private String serializer = SerializerKeys.JDK;
+    private String serializer = SerializerKeys.JSON;
+
+    // 负载均衡器
+    private String loadBalancer = LoadBalancerKeys.ROUND_ROBIN;
+
+    // 重试策略
+    private String retryStrategy = RetryStrategyKeys.NO;
+
+    // 容错策略
+    private String tolerantStrategy = TolerantStrategyKeys.FAIL_FAST;
 
     // 注册中心配置
     public RegistryConfig RegistryConfig = new RegistryConfig();
