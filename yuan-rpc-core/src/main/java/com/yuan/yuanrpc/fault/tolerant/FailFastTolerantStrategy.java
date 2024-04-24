@@ -13,4 +13,5 @@ public class FailFastTolerantStrategy implements TolerantStrategy {
     public RpcResponse doTolerant(Map<String, Object> context, Exception e) {
         throw new RuntimeException("服务报错", e);
     }
+
 }
