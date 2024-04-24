@@ -15,4 +15,5 @@ public class FailOverTolerantStrategy implements TolerantStrategy {
 
         return null;
     }
+
 }
