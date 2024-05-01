@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class RegistryConfig {
     // 注册中心类别
-    private String registry = RegistryKeys.ZOOKEEPER;
+    private String registry = RegistryKeys.ETCD;
     // 注册中心地址
     private String address = "http://localhost:2380";
 
