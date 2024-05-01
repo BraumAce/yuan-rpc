@@ -1,3 +1,3 @@
-roundRobin = com.yuan.yuanrpc.loadbalancer.RoundRobinLoadBalancer
-random = com.yuan.yuanrpc.loadbalancer.RandomLoadBalancer
-consistentHash = com.yuan.yuanrpc.loadbalancer.ConsistentHashLoadBalancer
+roundRobin=com.yuan.yuanrpc.loadbalancer.RoundRobinLoadBalancer
+random=com.yuan.yuanrpc.loadbalancer.RandomLoadBalancer
+consistentHash=com.yuan.yuanrpc.loadbalancer.ConsistentHashLoadBalancer
