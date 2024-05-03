@@ -9,10 +9,6 @@ import com.yuan.yuanrpc.proxy.ServiceProxyFactory;
  * 服务消费者示例
  */
 public class ConsumerExample {
-//    public static void main(String[] args) {
-//        RpcConfig rpc = ConfigUtils.loadConfig(RpcConfig.class, "rpc");
-//        System.out.println(rpc);
-//    }
 
     // 调用公共类测试 Mock 模拟服务代理
     public static void main(String[] args) {
