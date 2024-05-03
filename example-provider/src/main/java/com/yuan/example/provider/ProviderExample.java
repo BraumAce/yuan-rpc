@@ -30,6 +30,5 @@ public class ProviderExample {
 
         // 服务提供者初始化
         ProviderBootstrap.init(serviceRegisterInfoList);
-
     }
 }
